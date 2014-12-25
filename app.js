@@ -4,26 +4,37 @@ angular.module("hmautocomplete", [])
 		scope :{
 			selectedIndex:'=',
       hmSuggestions:'=',
-      hmDropdownid:'@'
+      hmDropdownid:'@',
+      hmSelect:'&'
     },
 
-		link:function(scope,elem,attr){
+		link:function(scope,element){
+
       scope.selectedIndex = 0;
 
-      elem.bind('focus',function(){
-        console.log('focuse');
-        angular.element(document.getElementById(scope.hmDropdownid)).show();
+      var elem = angular.element(document.getElementById('autotext'));
+      var list = angular.element(document.getElementById(scope.hmDropdownid));
+
+      elem.bind('focus', function(){
+        scope.selectedIndex=0;
+        scope.$apply();
+        list.css('display','block');
       });
 
       elem.bind('blur',function(){
-        console.log('blur');
-        angular.element(document.getElementById(scope.hmDropdownid)).show();
+        list.css('display','none');
       });
 
 			elem.bind("keydown",function (event){
+
+
+        if(list.css('display') === 'none'){
+          list.css('display','block');
+        }
+
         if(event.keyCode===40){//down key, increment selectedIndex
 			       event.preventDefault();
-             if( scope.selectedIndex+1 !==  scope.hmSuggestions.length){
+             if(scope.selectedIndex+1 !==  scope.hmSuggestions.length){
                    scope.selectedIndex++;
                    scope.$apply();
              }
@@ -37,11 +48,15 @@ angular.module("hmautocomplete", [])
              }
 			   }
 
-			   else if(event.keyCode===13){ //enter pressed
+        else if(event.keyCode===13 || event.keyCode===9){ //enter pressed or tab
 			       //scope.selectFunction(scope.selectedIndex);
+             elem.val(scope.hmSuggestions[scope.selectedIndex].Name);
+             list.css('display','none');
+             scope.hmSelect(scope.hmSuggestions[scope.selectedIndex]);
              scope.$apply();
+        }else if(event.keyCode===27){
+          list.css('display','none');
          }
-        console.log(scope.selectedIndex);
 			});
 
 		}
@@ -66,10 +81,14 @@ angular.module("hmautocomplete", [])
   return function(text, phrase) {
     if (phrase)
       text = text.replace(new RegExp('('+phrase+')', 'gi'),'<span class="highlighted">$1</span>');
-    console.log(text);
     return $sce.trustAsHtml(text);
   }
 }).controller('demo',function($scope){
-	$scope.index = 0;
+
 	$scope.items = [{'Name':'India'},{'Name':'Pakistan'},{'Name':'Nepal'},{'Name':'Bangladesh'}];
+
+  $scope.onselect = function(obj){
+    console.log(obj);
+  }
+
 });

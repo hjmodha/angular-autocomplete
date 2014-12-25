@@ -13,6 +13,7 @@
 			hm-textboxid="autotext"
             hm-dropdownid="dropdown"
             hm-suggestions="items"
+            hm-select="onselect(item)"
         >
 			<input type="text" id="autotext" class="form-control" ng-model="strSearch" />
 
@@ -23,6 +24,7 @@
                     ng-mouseover='selectedIndex==$index'
                     ng-class="{'ngcompleterowactive':selectedIndex==$index}"
 				    ng-bind-html="item.Name | highlight:strSearch"
+                    ng-click="onselect(item)"
                 >
 				</li>
 			</ul>
