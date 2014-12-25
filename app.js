@@ -32,15 +32,28 @@ angular.module("hmautocomplete", [])
 			       //scope.selectFunction(scope.selectedIndex);
              scope.$apply();
          }
-
         console.log(scope.selectedIndex);
-
 			});
 
 		}
 	};
-})
-.controller('demo',function($scope){
+}).directive('hoverClass', function () {
+    return {
+        restrict: 'A',
+        scope: {
+            hoverClass: '@'
+        },
+        link: function (scope, element) {
+            element.on('mouseenter', function() {
+                angular.element(document.getElementsByClassName('ngcompleterowactive')).removeClass('ngcompleterowactive');
+                element.addClass(scope.hoverClass);
+            });
+            element.on('mouseleave', function() {
+                element.removeClass(scope.hoverClass);
+            });
+        }
+    };
+}).controller('demo',function($scope){
 	$scope.index = 0;
 	$scope.items = [{'Name':'India'},{'Name':'Pakistan'},{'Name':'Nepal'},{'Name':'Bangladesh'}];
 });

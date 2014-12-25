@@ -20,8 +20,9 @@
 			<ul class="ngcomplete-dropdown">
 				<li ng-repeat="item in items"
 					class="ngcompleterow"
-					ng-mouseover="selectedIndex=$index"
-                    ng-class="{true:'ngcompleterowactive', false:''}[selectedIndex==$index]"
+                    hover-class='ngcompleterowactive'
+                    ng-mouseover='selectedIndex==$index'
+                    ng-class="{'ngcompleterowactive':selectedIndex==$index}"
 				>
                     {{ item.Name }}
 				</li>
@@ -31,3 +32,4 @@
 	</div>
 </body>
 </html>
+                    <!-- ng-class="{true:'ngcompleterowactive', false:'none'}[selectedIndex==$index]" -->
