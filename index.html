@@ -1,0 +1,33 @@
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
+
+	<script type="text/javascript" src="app.js"></script>
+	<link rel="stylesheet" type="text/css" href="autocomplete.css">
+
+</head>
+<body ng-app="hmautocomplete">
+	<div ng-controller="demo">
+		<hm-autocomplete
+			hm-max-suggestion="10"
+			selected-index="selectedIndex"
+			hm-textboxid="r1"
+            hm-suggestions="items"
+        >
+
+			<input type="text" id="autotext" class="form-control" />
+
+			<ul class="ngcomplete-dropdown">
+				<li ng-repeat="item in items"
+					class="ngcompleterow"
+					ng-mouseover="selectedIndex=$index"
+                    ng-class="{true:'ngcompleterowactive', false:''}[selectedIndex==$index]"
+				>
+                    {{ item.Name }}
+				</li>
+			</ul>
+
+		</hm-autocomplete>
+	</div>
+</body>
+</html>
