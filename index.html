@@ -9,22 +9,21 @@
 <body ng-app="hmautocomplete">
 	<div ng-controller="demo">
 		<hm-autocomplete
-			hm-max-suggestion="10"
 			selected-index="selectedIndex"
-			hm-textboxid="r1"
+			hm-textboxid="autotext"
+            hm-dropdownid="dropdown"
             hm-suggestions="items"
         >
+			<input type="text" id="autotext" class="form-control" ng-model="strSearch" />
 
-			<input type="text" id="autotext" class="form-control" />
-
-			<ul class="ngcomplete-dropdown">
-				<li ng-repeat="item in items"
+			<ul id="dropdown" class="ngcomplete-dropdown">
+				<li ng-repeat="item in items | limitTo:10"
 					class="ngcompleterow"
                     hover-class='ngcompleterowactive'
                     ng-mouseover='selectedIndex==$index'
                     ng-class="{'ngcompleterowactive':selectedIndex==$index}"
-				>
-                    {{ item.Name }}
+				    ng-bind-html="item.Name | highlight:strSearch"
+                >
 				</li>
 			</ul>
 

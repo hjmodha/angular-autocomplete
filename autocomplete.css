@@ -1,15 +1,3 @@
-.form-control {
-    outline: 0;
-    border-color: #ECECEC;
-    border-style: solid;
-    border-width: 1px;
-    width: 95%;
-    background-color: #ffffff;
-    padding: 6px;
-    border-radius: 2px;
-    margin-bottom: 5px;
-    font-size: 14px;
-}
 
 .ngcomplete-holder {
     position: relative;
@@ -20,21 +8,12 @@
     border-color: #ececec;
     border-width: 1px;
     border-style: solid;
-    width: 500px;
-    padding: 6px;
+    padding: 2px;
     cursor: pointer;
     z-index: 9999;
     position: absolute;
     background-color: #ffffff;
-}
-
-.ngcomplete-searching {
-    color: #acacac;
-    font-size: 14px;
-}
-
-.ngcomplete-description {
-    font-size: 14px;
+    margin-top:0px;
 }
 
 .ngcompleterow {
@@ -47,32 +26,6 @@
   color:#ffffff;
 }
 
-.ngcomplete-image-holder {
-    padding-top: 2px;
-    float: left;
-    margin-right: 10px;
-    margin-left: 5px;
-}
-
-.ngcomplete-image {
-    height: 34px;
-    width: 34px;
-    border-radius: 50%;
-    border-color: #ececec;
-    border-style: solid;
-    border-width: 1px;
-}
-
-.ngcomplete-image-default {
-    /* Add your own default image here
-     background-image: url('/assets/default.png');
-    */
-    background-position: center;
-    background-size: contain;
-    height: 34px;
-    width: 34px;
-}
-
-.active {
-    font-weight: bold;
+.highlighted{
+  font-weight:bold;
 }

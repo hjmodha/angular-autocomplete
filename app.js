@@ -3,15 +3,24 @@ angular.module("hmautocomplete", [])
 	return{
 		scope :{
 			selectedIndex:'=',
-      hmSuggestions:'='
-		},
+      hmSuggestions:'=',
+      hmDropdownid:'@'
+    },
 
 		link:function(scope,elem,attr){
-
       scope.selectedIndex = 0;
 
-			elem.bind("keydown",function (event){
+      elem.bind('focus',function(){
+        console.log('focuse');
+        angular.element(document.getElementById(scope.hmDropdownid)).show();
+      });
 
+      elem.bind('blur',function(){
+        console.log('blur');
+        angular.element(document.getElementById(scope.hmDropdownid)).show();
+      });
+
+			elem.bind("keydown",function (event){
         if(event.keyCode===40){//down key, increment selectedIndex
 			       event.preventDefault();
              if( scope.selectedIndex+1 !==  scope.hmSuggestions.length){
@@ -53,6 +62,13 @@ angular.module("hmautocomplete", [])
             });
         }
     };
+}).filter('highlight', function($sce) {
+  return function(text, phrase) {
+    if (phrase)
+      text = text.replace(new RegExp('('+phrase+')', 'gi'),'<span class="highlighted">$1</span>');
+    console.log(text);
+    return $sce.trustAsHtml(text);
+  }
 }).controller('demo',function($scope){
 	$scope.index = 0;
 	$scope.items = [{'Name':'India'},{'Name':'Pakistan'},{'Name':'Nepal'},{'Name':'Bangladesh'}];
