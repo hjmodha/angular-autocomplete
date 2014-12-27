@@ -15,6 +15,8 @@ angular.module("hmautocomplete", [])
       var elem = angular.element(document.getElementById('autotext'));
       var list = angular.element(document.getElementById(scope.hmDropdownid));
 
+      list.css('display','none');
+
       elem.bind('focus', function(){
         scope.selectedIndex=0;
         scope.$apply();
@@ -49,11 +51,12 @@ angular.module("hmautocomplete", [])
 			   }
 
         else if(event.keyCode===13 || event.keyCode===9){ //enter pressed or tab
-			       //scope.selectFunction(scope.selectedIndex);
+
              elem.val(scope.hmSuggestions[scope.selectedIndex].Name);
              list.css('display','none');
              scope.hmSelect(scope.hmSuggestions[scope.selectedIndex]);
              scope.$apply();
+
         }else if(event.keyCode===27){
           list.css('display','none');
          }
@@ -77,6 +80,19 @@ angular.module("hmautocomplete", [])
             });
         }
     };
+}).directive('hm-select-down',function(){
+  return{
+    restrict:'A',
+    scope:{
+      hmSelectDown:'&'
+    },
+    link:function(scope,elem,attr){
+      var list = angular.element(document.getElementById(scope.hmDropdownid));
+      elem.bind('click',function(){
+
+      });
+    }
+  };
 }).filter('highlight', function($sce) {
   return function(text, phrase) {
     if (phrase)
@@ -86,7 +102,6 @@ angular.module("hmautocomplete", [])
 }).controller('demo',function($scope){
 
 	$scope.items = [{'Name':'India'},{'Name':'Pakistan'},{'Name':'Nepal'},{'Name':'Bangladesh'}];
-
   $scope.onselect = function(obj){
     console.log(obj);
   }
