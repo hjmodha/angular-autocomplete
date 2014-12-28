@@ -20,7 +20,7 @@
 			<ul id="dropdown" class="ngcomplete-dropdown">
 				<li ng-repeat="item in items | limitTo:10"
 					class="ngcompleterow"
-                    hover-class
+                    hover-class='ngcompleterowactive'
                     ng-mouseover='selectedIndex==$index'
                     ng-class="{'ngcompleterowactive':selectedIndex==$index}"
 				    ng-bind-html="item.Name | highlight:strSearch"

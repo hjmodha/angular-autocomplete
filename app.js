@@ -1,5 +1,5 @@
 angular.module("hmautocomplete", [])
-.directive('hmAutocomplete',function(){
+.directive('hmAutocomplete',function($timeout){
 	return{
 		scope :{
 			selectedIndex:'=',
@@ -24,7 +24,11 @@ angular.module("hmautocomplete", [])
       });
 
       elem.bind('blur',function(){
-        list.css('display','none');
+        $timeout(
+          function(){
+            list.css('display','none');
+          },100
+        )
       });
 
 			elem.bind("keydown",function (event){
@@ -52,7 +56,6 @@ angular.module("hmautocomplete", [])
              }else{
                 scope.selectedIndex--;
              }
-
              scope.$apply();
 
 			   }
@@ -74,15 +77,15 @@ angular.module("hmautocomplete", [])
 }).directive('hoverClass', function () {
     return {
         restrict: 'A',
-        link: function (scope,element) {
+        link: function (scope,element,attr) {
 
             element.on('mouseenter', function() {
-                angular.element(document.getElementsByClassName('ngcompleterowactive')).removeClass('ngcompleterowactive');
-                element.addClass('ngcompleterowactive');
+                angular.element(document.getElementsByClassName(attr.hoverClass)).removeClass(attr.hoverClass);
+                element.addClass(attr.hoverClass);
             });
 
             element.on('mouseleave', function() {
-                element.removeClass('ngcompleterowactive');
+                element.removeClass(attr.hoverClass);
             });
 
         }
@@ -98,7 +101,8 @@ angular.module("hmautocomplete", [])
     link:function(scope,elem,attr){
       var list = angular.element(document.getElementById(scope.hmDropdownid));
       elem.bind('click',function(){
-        console.log('click handled');
+        scope.hmSelectDown();
+        list.css('display','none');
       });
     }
   };
