@@ -36,18 +36,25 @@ angular.module("hmautocomplete", [])
 
         if(event.keyCode===40){//down key, increment selectedIndex
 			       event.preventDefault();
-             if(scope.selectedIndex+1 !==  scope.hmSuggestions.length){
-                   scope.selectedIndex++;
-                   scope.$apply();
+             if(scope.selectedIndex+1 ===  scope.hmSuggestions.length){
+                  scope.selectedIndex = 0;
+             }else{
+                  scope.selectedIndex++;
              }
-  		   }
+             scope.$apply();
+         }
 
 			   else if(event.keyCode===38){ //up key, decrement selectedIndex
 			       event.preventDefault();
-             if(scope.selectedIndex-1 !== -1){
-                 scope.selectedIndex--;
-                 scope.$apply();
+
+             if(scope.selectedIndex === 0){
+                 scope.selectedIndex = scope.hmSuggestions.length-1;
+             }else{
+                scope.selectedIndex--;
              }
+
+             scope.$apply();
+
 			   }
 
         else if(event.keyCode===13 || event.keyCode===9){ //enter pressed or tab
@@ -67,20 +74,22 @@ angular.module("hmautocomplete", [])
 }).directive('hoverClass', function () {
     return {
         restrict: 'A',
-        scope: {
-            hoverClass: '@'
-        },
-        link: function (scope, element) {
+        link: function (scope,element) {
+
             element.on('mouseenter', function() {
                 angular.element(document.getElementsByClassName('ngcompleterowactive')).removeClass('ngcompleterowactive');
-                element.addClass(scope.hoverClass);
+                element.addClass('ngcompleterowactive');
             });
+
             element.on('mouseleave', function() {
-                element.removeClass(scope.hoverClass);
+                element.removeClass('ngcompleterowactive');
             });
+
         }
     };
-}).directive('hm-select-down',function(){
+})
+
+.directive('hmSelectDown',function(){
   return{
     restrict:'A',
     scope:{
@@ -89,11 +98,13 @@ angular.module("hmautocomplete", [])
     link:function(scope,elem,attr){
       var list = angular.element(document.getElementById(scope.hmDropdownid));
       elem.bind('click',function(){
-
+        console.log('click handled');
       });
     }
   };
-}).filter('highlight', function($sce) {
+})
+
+.filter('highlight', function($sce) {
   return function(text, phrase) {
     if (phrase)
       text = text.replace(new RegExp('('+phrase+')', 'gi'),'<span class="highlighted">$1</span>');

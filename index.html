@@ -20,11 +20,11 @@
 			<ul id="dropdown" class="ngcomplete-dropdown">
 				<li ng-repeat="item in items | limitTo:10"
 					class="ngcompleterow"
-                    hover-class='ngcompleterowactive'
+                    hover-class
                     ng-mouseover='selectedIndex==$index'
                     ng-class="{'ngcompleterowactive':selectedIndex==$index}"
 				    ng-bind-html="item.Name | highlight:strSearch"
-                    ng-click="onselect(item)"
+                    hm-select-down="onselect(item)"
                 >
 				</li>
 			</ul>
@@ -33,4 +33,3 @@
 	</div>
 </body>
 </html>
-                    <!-- ng-class="{true:'ngcompleterowactive', false:'none'}[selectedIndex==$index]" -->
