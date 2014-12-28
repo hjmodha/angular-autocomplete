@@ -14,6 +14,7 @@
     position: absolute;
     background-color: #ffffff;
     margin-top:0px;
+
 }
 
 .ngcompleterow {
@@ -24,8 +25,10 @@
 .ngcompleterowactive{
   background-color:#336699;
   color:#ffffff;
+  transition-property: top, left;
+  transition-duration: 2s, 1s;
+  transition-delay: 0s, 0.5s;
 }
-
 .highlighted{
   font-weight:bold;
 }
