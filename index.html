@@ -3,10 +3,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
 
 	<script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="source.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="autocomplete.css">
 
 </head>
-<body ng-app="hmautocomplete">
+<body ng-app="demo">
 	<div ng-controller="demo">
 		<hm-autocomplete
 			selected-index="selectedIndex"
@@ -15,7 +17,8 @@
             hm-suggestions="items"
             hm-select="onselect(items[selectedIndex])"
         >
-			<input type="text" id="autotext" class="form-control" ng-model="strSearch" />
+            <input type="text" id="autotext" class="form-control"  />
+            <button  hm-select-down="onselect(items[selectedIndex])">Select</button>
 
 			<ul id="dropdown" class="ngcomplete-dropdown">
 				<li ng-repeat="item in items | limitTo:10"
@@ -30,6 +33,35 @@
 			</ul>
 
 		</hm-autocomplete>
+        <br />
+        <br />
+        <br />
+        <br />
+       <hm-autocomplete
+			selected-index="selectedIndex"
+			hm-textboxid="autotext2"
+            hm-dropdownid="dropdown2"
+            hm-suggestions="items"
+            hm-select="onselect(items[selectedIndex])"
+        >
+            <input type="text" id="autotext2" class="form-control"  />
+            <button  hm-select-down="onselect(items[selectedIndex])">Select</button>
+
+			<ul id="dropdown2" class="ngcomplete-dropdown">
+				<li ng-repeat="item in items | limitTo:10"
+					class="ngcompleterow"
+                    hover-class='ngcompleterowactive'
+                    ng-mouseover='selectedIndex==$index'
+                    ng-class="{'ngcompleterowactive':selectedIndex==$index}"
+                    hm-select-down="onselect(item)"
+                >
+                    <label ng-bind-html="item.Name | highlight:strSearch"></label>
+				</li>
+			</ul>
+
+		</hm-autocomplete>
+
+
 	</div>
 </body>
 </html>
