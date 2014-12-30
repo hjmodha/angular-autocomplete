@@ -102,8 +102,6 @@ angular.module("hmautocomplete", [])
     link:function(scope,elem,attr){
       var list = angular.element(document.getElementById(scope.hmDropdownid));
 
-      console.log(attr.hmTextboxid);
-
       elem.bind('click',function(){
         scope.hmSelectDown();
         list.css('display','none');

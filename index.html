@@ -44,7 +44,7 @@
             hm-suggestions="items"
             hm-select="onselect(items[selectedIndex])"
         >
-            <input type="text" id="autotext2" class="form-control"  />
+            <input type="text" id="autotext2" class="form-control" placeholder="select country" />
             <button  hm-select-down="onselect(items[selectedIndex])">Select</button>
 
 			<ul id="dropdown2" class="ngcomplete-dropdown">
@@ -60,7 +60,6 @@
                     <label ng-bind-html="item.Name | highlight:strSearch"></label>
 				</li>
 			</ul>
-
 		</hm-autocomplete>
 
 
