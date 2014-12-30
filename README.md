@@ -1,7 +1,6 @@
 angular-autocomplete
 ====================
-
-##Angularjs Customizable Autocomplete - version 0.0.1 - no jquery Dependancy
+Angularjs Customizable Autocomplete - version 0.0.1 - no jquery Dependancy
 
 ##Dependencies
 * Angularjs
