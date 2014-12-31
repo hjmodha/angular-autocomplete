@@ -16,8 +16,8 @@ Angularjs Customizable Autocomplete - version 0.0.1 - no jquery Dependancy
 
 ```
       <hm-autocomplete
-			      selected-index="selectedIndex"
-			      hm-textboxid="autotext2"
+	    selected-index="selectedIndex"
+	    hm-textboxid="autotext2"
             hm-dropdownid="dropdown2"
             hm-suggestions="items"
             hm-select="onselect(items[selectedIndex])"
@@ -43,7 +43,7 @@ Important parameters:
 
 ## Demo
 
-[Plnkr](http://embed.plnkr.co/CYcQgE5sbInTs76SU8An/)
+[Plnkr](http://plnkr.co/edit/tcmprqr86g4EzKke116J?p=preview)
 
 ##Contribute
 
